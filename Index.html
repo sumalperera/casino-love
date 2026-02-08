@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Casino Love ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #111, #000);
+  font-family: "Courier New", monospace;
+  color: #00ff99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.terminal {
+  background: #020202;
+  border: 2px solid #ff2f6d;
+  border-radius: 18px;
+  padding: 36px;
+  max-width: 720px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.85);
+}
+
+.brand {
+  text-align: center;
+  color: #ff2f6d;
+  letter-spacing: 3px;
+  font-weight: bold;
+  margin-bottom: 22px;
+}
+
+.line {
+  margin: 10px 0;
+}
+
+.prompt::before {
+  content: "casino-love@terminal:~$ ";
+  color: #ff2f6d;
+}
+
+.code {
+  margin: 18px 0;
+  line-height: 1.6;
+}
+
+button {
+  margin-top: 18px;
+  background: linear-gradient(135deg, #ff2f6d, #ff6b81);
+  border: none;
+  border-radius: 999px;
+  padding: 12px 32px;
+  color: white;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  box-shadow: 0 10px 30px rgba(255,47,109,0.5);
+}
+
+.hidden {
+  display: none;
+}
+
+/* SLOT MACHINE CABINET */
+.slot-wrapper {
+  position: relative;
+  margin: 30px auto;
+  width: 300px;
+}
+
+.slot-machine {
+  background: #111;
+  border: 4px solid #ff2f6d;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* REELS */
+.reel {
+  width: 70px;
+  height: 60px;
+  overflow: hidden;
+  background: #000;
+  border-radius: 10px;
+  border: 2px solid #ff2f6d;
+  position: relative;
+}
+
+.symbols {
+  position: absolute;
+  width: 100%;
+  top: 0;
+}
+
+.symbols.spinning {
+  animation: spin 0.08s linear infinite;
+}
+
+.symbol {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+/* HEART SHAPE (not emoji) */
+.heart {
+  width: 26px;
+  height: 26px;
+  background: #ff2f6d;
+  transform: rotate(-45deg);
+  position: relative;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  width: 26px;
+  height: 26px;
+  background: #ff2f6d;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart::before {
+  top: -13px;
+  left: 0;
+}
+
+.heart::after {
+  left: 13px;
+  top: 0;
+}
+
+@keyframes spin {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-360px); }
+}
+
+/* STOP ON JACKPOT */
+.jackpot .symbols {
+  animation: none !important;
+  transition: top 0.5s ease-out;
+  top: 0px !important;
+}
+
+/* HEARTS COMING OUT */
+.payout {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  pointer-events: none;
+}
+
+.payout .heart {
+  position: absolute;
+  bottom: 0;
+  animation: burst 2s ease-out forwards;
+}
+
+@keyframes burst {
+  0% { opacity: 0; transform: translateY(0) rotate(-45deg); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-120px) rotate(-45deg); }
+}
+</style>
+</head>
+
+<body>
+<div class="terminal">
+  <div class="brand">🎰 CASINO LOVE 🎰</div>
+
+  <div class="line">I wrote this in the only language that felt appropriate.</div>
+
+  <div class="code">
+    const me = "yours";<br>
+    const you = "Sumal";<br><br>
+    function beMyValentine(you) {<br>
+    &nbsp;&nbsp;return you === "Sumal";<br>
+    }
+  </div>
+
+  <div class="line">No bugs. No edge cases.</div>
+  <div class="line">Just me asking you.</div>
+
+  <div class="line prompt">Run function?</div>
+  <button onclick="run()">Yes, obviously!</button>
+
+  <div id="result" class="hidden">
+    <div class="slot-wrapper">
+      <div class="slot-machine" id="machine">
+        <div class="reel"><div class="symbols">
+          <div class="symbol"><div class="heart"></div></div>
+          <div class="symbol">❌</div>
+          <div class="symbol">💎</div>
+          <div class="symbol">🎰</div>
+          <div class="symbol">⭐</div>
+          <div class="symbol">💰</div>
+        </div></div>
+        <div class="reel"><div class="symbols">
+          <div class="symbol"><div class="heart"></div></div>
+          <div class="symbol">💰</div>
+          <div class="symbol">⭐</div>
+          <div class="symbol">❌</div>
+          <div class="symbol">💎</div>
+          <div class="symbol">🎰</div>
+        </div></div>
+        <div class="reel"><div class="symbols">
+          <div class="symbol"><div class="heart"></div></div>
+          <div class="symbol">🎰</div>
+          <div class="symbol">💰</div>
+          <div class="symbol">💎</div>
+          <div class="symbol">❌</div>
+          <div class="symbol">⭐</div>
+        </div></div>
+      </div>
+      <div class="payout" id="payout"></div>
+    </div>
+
+    <div class="line prompt">Pull request merged ✅</div>
+    <div class="line">Sorry, there's no "no" option — you're stuck with me ❤️</div>
+  </div>
+</div>
+
+<script>
+function run() {
+  document.getElementById("result").style.display = "block";
+  
+  const reels = document.querySelectorAll(".symbols");
+  reels.forEach(reel => reel.classList.add("spinning"));
+
+  setTimeout(() => {
+    document.getElementById("machine").classList.add("jackpot");
+    reels.forEach(reel => reel.classList.remove("spinning"));
+
+    const payout = document.getElementById("payout");
+    for (let i = 0; i < 10; i++) {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.style.left = Math.random() * 260 + "px";
+      h.style.animationDelay = Math.random() * 0.5 + "s";
+      payout.appendChild(h);
+    }
+  }, 1200);
+}
+</script>
+</body>
+</html>
